@@ -12,9 +12,13 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
+    "@types/js-cookie": "^2.2.6",
+    "@types/jwt-decode": "^2.2.1",
     "core-js": "^3.6.5",
     "gotrue-js": "^0.9.27",
+    "js-cookie": "^2.2.1",
     "nuxt": "^2.14.5",
+    "nuxt-property-decorator": "^2.8.8",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.0.0",
     "vuex-class": "^0.3.2"
@@ -22,6 +26,7 @@
   "devDependencies": {
     "@nuxt/types": "^2.14.5",
     "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^26.3.0",

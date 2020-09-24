@@ -8,10 +8,11 @@
       </ul>
       <div class="spacer"></div>
       <div class="right-menu">
-         <nuxt-link to="/signin" class="nav-item nav-link">
+        <span v-if="loggedIn" class="nav-item nav-link" @click="onLogOut">Log out</span>
+        <nuxt-link v-if="!loggedIn" to="/signin" class="nav-item nav-link">
           Sign In
         </nuxt-link>
-        <span>
+        <span v-if="!loggedIn">
           <nuxt-link to="signup" class="nav-item nav-link">Sign Up</nuxt-link>
         </span>
       </div>
@@ -19,15 +20,33 @@
   </header>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Vue } from 'vue-property-decorator';
+import  { authNameSpace } from "@/store/auth";
 import { navItems } from './navItem';
-export default Vue.extend({
+@Component({
+  components: {
+    // Spinner,
+    // VueTelInput
+  },
   data() {
     return {
       navItems: navItems
     }
   }
 })
+
+export default class HeaderComponent extends Vue {
+  
+  @authNameSpace.Getter("LoggedIn")
+  private loggedIn!: boolean;
+  @authNameSpace.Action("logout")
+  private logout!: any;
+
+  async onLogOut() {
+    await this.logout();
+    this.$router.push("/signin");
+  }
+}
 
 </script>
 <style>
@@ -56,6 +75,7 @@ ul {
 }
 .nav-item {
   margin-right: 20px;
+  cursor: pointer;
 }
 .nav-item:last-child {
   margin-right: 0;

@@ -93,15 +93,8 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { Action } from 'vuex-class';
-// import NProgress from "nprogress";
-// import Spinner from '@/components/Spinner.vue'
-// import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// const VueTelInput = async () => (await import('vue-tel-input')).VueTelInput;
-// import { Analytics, Page } from '../services/AnalyticsService';
-// library.add(faCircleNotch);
-import { SIGN_UP_USER, SIGN_IN_USER } from "../store/types";
-import { counterVuexNamespace } from "@/store/counter/const";
+import { SIGN_UP_USER, SIGN_IN_USER } from "../store/actionTypes";
+import { authNameSpace } from "@/store/auth";
 @Component({
   components: {
     // Spinner,
@@ -114,44 +107,33 @@ export default class Home extends Vue {
   last_name: string = 'Doe';
   email: string = '';
   password: string = '';
-  phone: string = '12345';
-  promo_code: string = '';
+  phone: string = '+1-202-555-0152';
+  promo_code: string = 'abc';
   checked: boolean = false;
   submitted = false;
 
-  @counterVuexNamespace.State('count')
-  private count!: number;
-  @counterVuexNamespace.Getter('square')
-  private square!: number;
-  // methods should match expected signature
-  @counterVuexNamespace.Action('increment')
-  private increment!: () => void;
 
-  // @Action(SIGN_UP_USER) attemptSignup: any;
-  @Action(SIGN_UP_USER) signUpUser: any;
-  handleUnsuccessfulLogin(err: any) {
-    // Vue.notify({
-    //   title: 'Oops',
-    //   text: 'There was issue signing up:\n' + err,
-    //   type: "warn",
-    // })
-    this.submitted = false
-    // NProgress.done();
-  }
-  created() {
-    // Analytics.registerPageVisit(Page.SignUp);
-    // this.phone = <string>this.$route.query.phone;
-    this.promo_code = this.$route.query.referrer as string
-  }
+  @authNameSpace.Action(SIGN_UP_USER)
+  private signUpuser!: (credential: any ) => void
 
-  @Watch('$route')
-  onRouteChanged() {
-    //this.getPage();
-    // this.phone = <string>this.$route.query.phone;
-  }
-
-  Signup() {
-    this.increment();
+  async Signup() {
+    // this.increment();
+    try {
+      await this.signUpuser({
+        email: this.email,
+        password: this.password,
+        attributes: {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          phone: this.phone.replace(/\D/g, ''),
+          promo: this.promo_code,
+        }
+     });
+     this.$router.push({ path: "/" });
+    } catch {
+      console.log("sign up error");
+    }
+    
     // NProgress.start();
     // if (this.phone.replace(/\D/g, '').length != 10) {
     //   Vue.notify({
@@ -163,16 +145,7 @@ export default class Home extends Vue {
     // }
     // this.submitted = true;
     // console.log("[submit]", this.email, this.password, this.phone);
-    // // this.$store.dispatch(SIGN_UP_USER, {
-    // //     email: this.email,
-    // //     password: this.password,
-    // //     attributes: {
-    // //       first_name: this.first_name,
-    // //       last_name: this.last_name,
-    // //       phone: this.phone.replace(/\D/g, ''),
-    // //       promo: this.promo_code,
-    // //     }
-    // //   });
+
     // this.signUpUser(
     //   {
     //     email: this.email,

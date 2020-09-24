@@ -9,12 +9,17 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
+@Component({
+  middleware: ["check-auth", "auth"],
+  components: {
+  }
+})
+
+export default class BlogPage extends Vue {
+
 
 }
 </script>
-
-<style>
-
-</style>
