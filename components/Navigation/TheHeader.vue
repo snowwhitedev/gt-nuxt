@@ -2,13 +2,17 @@
   <header>
     <nav class="main-menu">
       <ul>
-        <li v-for="navItem in navItems" :key="navItem.name" class="nav-item">
-          <nuxt-link :to="navItem.link" class="nav-link">{{ navItem.name }}</nuxt-link>
+        <li v-for="navItem in navs" :key="navItem.name" class="nav-item">
+          <nuxt-link :to="navItem.link" class="nav-link">{{
+            navItem.name
+          }}</nuxt-link>
         </li>
       </ul>
       <div class="spacer"></div>
       <div class="right-menu">
-        <span v-if="loggedIn" class="nav-item nav-link" @click="onLogOut">Log out</span>
+        <span v-if="loggedIn" class="nav-item nav-link" @click="onLogOut"
+          >Log out</span
+        >
         <nuxt-link v-if="!loggedIn" to="/signin" class="nav-item nav-link">
           Sign In
         </nuxt-link>
@@ -21,7 +25,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import  { authNameSpace } from "@/store/auth";
+import { authNameSpace } from '@/store/auth';
 import { navItems } from './navItem';
 @Component({
   components: {
@@ -30,24 +34,22 @@ import { navItems } from './navItem';
   },
   data() {
     return {
-      navItems: navItems
-    }
+      navs: navItems
+    };
   }
 })
-
 export default class HeaderComponent extends Vue {
-  
-  @authNameSpace.Getter("LoggedIn")
+  @authNameSpace.Getter('LoggedIn')
   private loggedIn!: boolean;
-  @authNameSpace.Action("logout")
+
+  @authNameSpace.Action('logout')
   private logout!: any;
 
   async onLogOut() {
     await this.logout();
-    this.$router.push("/signin");
+    this.$router.push('/signin');
   }
 }
-
 </script>
 <style>
 body {

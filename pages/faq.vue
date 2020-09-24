@@ -1,15 +1,9 @@
 <template>
-  <div>
-    this is faq page
-  </div>
+  <div>this is faq page</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

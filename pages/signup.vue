@@ -11,11 +11,11 @@
           <div class="form-group">
             <label class="form-label">E-mail</label>
             <input
+              v-model="email"
               type="email"
               name="email"
               autocomplete="email"
               class="form-control"
-              v-model="email"
               required
             />
           </div>
@@ -23,11 +23,11 @@
           <div class="form-group">
             <label class="form-label">Password</label>
             <input
+              v-model="password"
               type="password"
               name="new-password"
               autocomplete="new-password"
               class="form-control"
-              v-model="password"
               required
             />
           </div>
@@ -47,18 +47,19 @@
         <!-- .form-body -->
         <div class="custom-control custom-checkbox">
           <input
+            id="conditions"
+            v-model="checked"
             type="checkbox"
             class="custom-control-input"
-            id="conditions"
             required
-            v-model="checked"
           />
           <label
             class="custom-control-label custom-checkbox-label"
             for="conditions"
           >
-            I accept <router-link to="/terms">Terms and Conditions</router-link></label
-          >
+            I accept
+            <router-link to="/terms">Terms and Conditions</router-link>
+          </label>
         </div>
         <!-- .custom-control -->
         <div class="form-footer">
@@ -91,10 +92,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Action } from 'vuex-class';
-import { SIGN_UP_USER, SIGN_IN_USER } from "../store/actionTypes";
-import { authNameSpace } from "@/store/auth";
+import { Component, Vue } from 'vue-property-decorator';
+import { authNameSpace } from '@/store/auth';
+import { SIGN_UP_USER } from '../store/actionTypes';
 @Component({
   components: {
     // Spinner,
@@ -102,7 +102,6 @@ import { authNameSpace } from "@/store/auth";
   }
 })
 export default class Home extends Vue {
-
   first_name: string = 'Temp';
   last_name: string = 'Doe';
   email: string = '';
@@ -112,9 +111,8 @@ export default class Home extends Vue {
   checked: boolean = false;
   submitted = false;
 
-
   @authNameSpace.Action(SIGN_UP_USER)
-  private signUpuser!: (credential: any ) => void
+  private signUpuser!: (credential: any) => void;
 
   async Signup() {
     // this.increment();
@@ -126,55 +124,11 @@ export default class Home extends Vue {
           first_name: this.first_name,
           last_name: this.last_name,
           phone: this.phone.replace(/\D/g, ''),
-          promo: this.promo_code,
+          promo: this.promo_code
         }
-     });
-     this.$router.push({ path: "/" });
-    } catch {
-      console.log("sign up error");
-    }
-    
-    // NProgress.start();
-    // if (this.phone.replace(/\D/g, '').length != 10) {
-    //   Vue.notify({
-    //     title: 'Oops',
-    //     text: 'Please enter a properly formatted phone number.',
-    //     type: "warn",
-    //   })
-    //   return
-    // }
-    // this.submitted = true;
-    // console.log("[submit]", this.email, this.password, this.phone);
-
-    // this.signUpUser(
-    //   {
-    //     email: this.email,
-    //     password: this.password,
-    //     attributes: {
-    //       first_name: this.first_name,
-    //       last_name: this.last_name,
-    //       phone: this.phone.replace(/\D/g, ''),
-    //       promo: this.promo_code,
-    //     }
-    //   }
-    // ).catch(error => {
-    //   console.log(error)
-    //   // Vue.notify({
-    //   //   title: 'Error',
-    //   //   text: 'There was an issue signing up. Please contact Good Tree support: 510-725-4405.',
-    //   //   type: "error",
-    //   // })
-    //   this.handleUnsuccessfulLogin(error);
-    //   return Promise.reject(error)
-    // }).then((response) => {
-    //   console.log(response)
-    //   // Vue.notify({
-    //   //   title: 'Welcome',
-    //   //   text: 'You have successfully signed up. You will receive a text alert when your profile is approved. Please keep in mind that we only verify customers during business hours between 10am and 11pm.'
-    //   // })
-    //   this.submitted = false
-    //   this.$router.push({ name: "validate" });
-    // })
+      });
+      this.$router.push({ path: '/' });
+    } catch {}
   }
 }
 </script>

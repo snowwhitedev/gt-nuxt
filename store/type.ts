@@ -1,3 +1,3 @@
 export interface RootState {
-    count: number;
-  }
+  count: number;
+}

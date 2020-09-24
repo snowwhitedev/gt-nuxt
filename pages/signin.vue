@@ -11,11 +11,11 @@
           <div class="form-group">
             <label class="form-label">E-mail</label>
             <input
+              v-model="email"
               type="email"
               name="email"
               autocomplete="email"
               class="form-control"
-              v-model="email"
               required
             />
           </div>
@@ -23,11 +23,11 @@
           <div class="form-group">
             <label class="form-label">Password</label>
             <input
+              v-model="password"
               type="password"
               name="new-password"
               autocomplete="new-password"
               class="form-control"
-              v-model="password"
               required
             />
           </div>
@@ -52,19 +52,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Action } from 'vuex-class';
-import {  SIGN_IN_USER } from "../store/actionTypes";
-import { authNameSpace } from "@/store/auth";
+import { Component, Vue } from 'vue-property-decorator';
+import { authNameSpace } from '@/store/auth';
+import { SIGN_IN_USER } from '../store/actionTypes';
 @Component({
   components: {
     // Spinner,
     // VueTelInput
   }
 })
-
 export default class SiginPage extends Vue {
-
   first_name: string = 'Temp';
   last_name: string = 'Doe';
   email: string = '';
@@ -74,9 +71,8 @@ export default class SiginPage extends Vue {
   checked: boolean = false;
   submitted = false;
 
-
   @authNameSpace.Action(SIGN_IN_USER)
-  private signInUser!: (credential: any ) => void
+  private signInUser!: (credential: any) => void;
 
   async Signin() {
     try {
@@ -84,12 +80,8 @@ export default class SiginPage extends Vue {
         email: this.email,
         password: this.password
       });
-      this.$router.push({ path: "/" });
-    } catch (err) {
-      console.log("[error]", err);
-    }
-    
+      this.$router.push({ path: '/' });
+    } catch (err) {}
   }
-
 }
 </script>

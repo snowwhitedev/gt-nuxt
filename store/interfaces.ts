@@ -1,4 +1,4 @@
-import {User} from "gotrue-js";
+import { User } from 'gotrue-js';
 // import { IDeliveryAddress } from './modules/profile/components/address/AddressService';
 
 export interface Product {
@@ -24,14 +24,33 @@ export interface OrderItem {
   Savings: number;
 }
 
+export type GoodTreeLocations = 'Long Beach' | 'Oakland';
+
+export interface Zone {
+  Id: string;
+  Name: string;
+  DeliveryFee: number;
+  Minimum: number;
+  LocalCannabisTax: number;
+  SalesTax: number;
+  ExciseTax: number;
+  Vendor: GoodTreeLocations;
+}
+
 export interface LocationInfo {
   // Address: IDeliveryAddress;
-  Address: string,
+  Address: string;
   IsInDeliveryNetwork: boolean;
   Zone: Zone;
 }
 
-export type OrderEnum = 'Ordering' | 'Open' | 'Allocated' | 'Pending Pulling All Items' | 'Fulfilled' | 'Cancelled';
+export type OrderEnum =
+  | 'Ordering'
+  | 'Open'
+  | 'Allocated'
+  | 'Pending Pulling All Items'
+  | 'Fulfilled'
+  | 'Cancelled';
 
 export interface OrderState {
   CartID: string;
@@ -48,15 +67,22 @@ export interface OrderState {
   PendingPayment: boolean;
   // number of minutes until pending order is expected to be delivered
   ETA: number;
-  TaxTotal: number|null;
+  TaxTotal: number | null;
   Date: string;
   Method: string;
   EightsCount: number;
   StizysCount: number;
 }
 
-export type CustomerEnum = 'NoAccount' | 'Unverified' | 'UnverifiedEcommerceL' | 'UnverifiedEcommerceA' | "NewCustomerVerified" | 'Verified' | "PendingOrder" | 'Blocked';
-
+export type CustomerEnum =
+  | 'NoAccount'
+  | 'Unverified'
+  | 'UnverifiedEcommerceL'
+  | 'UnverifiedEcommerceA'
+  | 'NewCustomerVerified'
+  | 'Verified'
+  | 'PendingOrder'
+  | 'Blocked';
 
 export interface CustomerState {
   CustomerStatus: CustomerEnum;
@@ -71,7 +97,7 @@ export interface PaymentInfo {
 
 export interface AuthState {
   currentUser: User;
-  token: any,
+  token: any;
   loading: boolean;
   loggedIn: boolean;
   notifications: Array<string>;
@@ -107,17 +133,4 @@ export interface Error {
 
 export interface ErrorResponse {
   errors: Error[];
-}
-
-export type GoodTreeLocations = "Long Beach"| "Oakland"
-
-export interface Zone {
-  Id : string;
-  Name : string;
-  DeliveryFee: number;
-  Minimum: number;
-  LocalCannabisTax: number;
-  SalesTax: number;
-  ExciseTax: number;
-  Vendor: GoodTreeLocations
 }
