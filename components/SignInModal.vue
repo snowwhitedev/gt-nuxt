@@ -1,10 +1,10 @@
 <template>
-  <div class="modal fade" id="login-modal">
+  <div id="login-modal" class="modal fade">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <form @submit.prevent="Signin">
           <div class="left-side" style="margin: 10px 10px">
-            <a @click="CloseIt" class="modal-close" data-dismiss="modal">
+            <a class="modal-close" data-dismiss="modal" @click="CloseIt">
               x
               <!-- <font-awesome-icon :icon="['fa', 'times']"></font-awesome-icon> -->
             </a>
@@ -16,14 +16,14 @@
             </h3>
           </div>
           <!-- .modal-header -->
-          <div class="modal-body" v-if="!submitted">
+          <div v-if="!submitted" class="modal-body">
             <div class="form-group">
               <label class="form-label">E-mail</label>
               <input
+                v-model="email"
                 type="email"
                 name="email"
                 class="form-control"
-                v-model="email"
                 required
                 autocomplete="username"
               />
@@ -32,10 +32,10 @@
             <div class="form-group">
               <label class="form-label">Password</label>
               <input
+                v-model="password"
                 type="password"
                 name="password"
                 class="form-control"
-                v-model="password"
                 required
                 autocomplete="current-password"
               />
@@ -104,7 +104,7 @@ export default class SigninModal extends Vue {
         password: this.password
       });
       this.$router.push({ path: '/' });
-    } catch (err) {}
+    } catch {}
     this.submitted = false;
   }
   // created() {
@@ -178,7 +178,6 @@ export default class SigninModal extends Vue {
   //     });
   // }
   CloseIt() {
-    console.log('CloseIt');
     this.$emit('onLoginX', false);
   }
 }

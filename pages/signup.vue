@@ -11,11 +11,11 @@
           <div class="form-group">
             <label class="form-label">E-mail</label>
             <input
+              v-model="email"
               type="email"
               name="email"
               autocomplete="email"
               class="form-control"
-              v-model="email"
               required
             />
           </div>
@@ -23,11 +23,11 @@
           <div class="form-group">
             <label class="form-label">Password</label>
             <input
+              v-model="password"
               type="password"
               name="new-password"
               autocomplete="new-password"
               class="form-control"
-              v-model="password"
               required
             />
           </div>
@@ -36,10 +36,10 @@
             <label class="form-label">Phone number</label>
             <vue-tel-input
               v-model="phone"
-              defaultCountry="USA"
+              default-country="USA"
               placeholder="(123) 456-7890"
-              inputClasses="form-control"
-              :maxLen="14"
+              input-classes="form-control"
+              :max-len="14"
               :required="true"
             ></vue-tel-input>
           </div>
@@ -47,11 +47,11 @@
         <!-- .form-body -->
         <div class="custom-control custom-checkbox">
           <input
+            id="conditions"
+            v-model="checked"
             type="checkbox"
             class="custom-control-input"
-            id="conditions"
             required
-            v-model="checked"
           />
           <label
             class="custom-control-label custom-checkbox-label"

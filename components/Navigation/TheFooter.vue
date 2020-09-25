@@ -53,7 +53,7 @@
             <!--<li>
               <router-link to="/account">Account Info</router-link>
             </li>-->
-            <li @click="onLogOut" class="link-item">Sign Out</li>
+            <li class="link-item" @click="onLogOut">Sign Out</li>
           </ul>
         </div>
         <!-- .col-md-2 -->
