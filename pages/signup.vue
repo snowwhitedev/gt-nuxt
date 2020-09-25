@@ -76,11 +76,13 @@
               size="2x"
             />
           </button>
-          <b
-            ><p class="or-login">
-              <router-link to="/sign-in">I have an account already</router-link>
-            </p></b
-          >
+          <b>
+            <p class="or-login">
+              <a class="action-link" @click="goToLogIn">
+                I have an account already
+              </a>
+            </p>
+          </b>
         </div>
         <!-- .form-footer -->
       </form>
@@ -95,7 +97,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { authNameSpace } from '@/store/auth';
-import { SIGN_UP_USER } from '../store/actionTypes';
+import { SIGN_UP_USER, SHOW_LOGIN_MODAL } from '../store/actionTypes';
 library.add(faCircleNotch);
 @Component({
   components: {}
@@ -131,6 +133,10 @@ export default class Home extends Vue {
       this.$router.push({ path: '/' });
     } catch {}
     this.submitted = false;
+  }
+
+  goToLogIn() {
+    this.$nuxt.$emit(SHOW_LOGIN_MODAL, true);
   }
 
   // HandleUnsuccessfulLogin(err) {
@@ -199,3 +205,9 @@ export default class Home extends Vue {
   // }
 }
 </script>
+
+<style scoped>
+.action-link {
+  cursor: pointer;
+}
+</style>
