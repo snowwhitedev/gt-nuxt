@@ -63,9 +63,9 @@
               <a class="modal-action" @click="onSignUp">here</a>
             </p>
             <p class="forgot-password">
-              <router-link to="/forget-password" @click="onClose">
+              <a class="modal-action" @click="onForgotPassowrd">
                 Forgot password?
-              </router-link>
+              </a>
             </p>
           </div>
           <!-- .modal-footer -->
@@ -80,8 +80,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { authNameSpace } from '@/store/auth';
-import { SIGN_IN_USER } from '../store/actionTypes';
-
+import { SIGN_IN_USER, SHOW_LOGIN_MODAL } from '../store/actionTypes';
 library.add(faCircleNotch);
 
 @Component({
@@ -114,6 +113,11 @@ export default class SigninModal extends Vue {
   onSignUp() {
     this.$emit('onLoginX', false);
     this.$router.push('/signup');
+  }
+
+  onForgotPassowrd() {
+    this.$nuxt.$emit(SHOW_LOGIN_MODAL, false);
+    this.$router.push('/forgot-password');
   }
 }
 </script>
