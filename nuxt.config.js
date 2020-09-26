@@ -14,22 +14,18 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Montserrat:400,700,900'
+        href: 'https://fonts.googleapis.com/css?family=Montserrat:400,700,900'
       }
     ]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: [
-    '~assets/scss/style.css',
-    '~assets/scss/transition.css'
-  ],
+  css: ['~assets/scss/style.css', '~assets/scss/transition.css'],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~plugins/globalUse.js',
-    { src: '~plugins/globalClientUse', mode:'client' },
+    { src: '~plugins/globalClientUse', mode: 'client' },
     '~plugins/globalComponent.js'
   ],
 
@@ -63,10 +59,9 @@ export default {
     plugins: [
       new webpack.ProvidePlugin({
         // global modules
-        _: "lodash"
+        _: 'lodash'
       })
-    ],
-    extend(config, ctx) {}
+    ]
   },
 
   router: {
@@ -76,4 +71,4 @@ export default {
   generate: {
     fallback: true
   }
-}
+};

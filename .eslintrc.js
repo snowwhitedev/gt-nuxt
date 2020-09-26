@@ -4,32 +4,29 @@ module.exports = {
     browser: true,
     node: true
   },
-  parserOptions: {
-  },
+  parserOptions: {},
   extends: [
     '@nuxtjs/eslint-config-typescript',
     'plugin:nuxt/recommended',
     '@nuxtjs',
     'prettier',
     'prettier/vue',
-    'plugin:prettier/recommended',
+    'plugin:prettier/recommended'
   ],
-  plugins: [
-    'prettier'
-  ],
+  plugins: ['prettier'],
   // add your custom rules here
   // rules: {
   //   'camelcase': [2, { 'properties': 'never' }]
   // }
   rules: {
-    "camelcase": ["error"],
+    camelcase: ['error']
   },
   overrides: [
     {
-      "files": ["**/*.ts", "**/*.tsx", "**/*.vue"],
-      "rules": {
-        "camelcase": ["off"]
+      files: ['**/*.ts', '**/*.tsx', '**/*.vue'],
+      rules: {
+        camelcase: ['off']
       }
     }
-  ],
-}
+  ]
+};

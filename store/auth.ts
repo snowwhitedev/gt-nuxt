@@ -2,6 +2,7 @@ import { GetterTree, ActionTree, MutationTree } from 'vuex';
 import { namespace } from 'vuex-class';
 import GoTrue, { User } from 'gotrue-js';
 import Cookie from 'js-cookie';
+// import jwt_decode from 'jwt-decode';
 import { RootState, AuthState } from './interfaces';
 import { SIGN_UP_USER, SIGN_IN_USER, SET_CURRENT_USER } from './actionTypes';
 export const auth = new GoTrue({
@@ -12,8 +13,8 @@ export const auth = new GoTrue({
 });
 
 export const state: AuthState = {
-  // currentUser: getSavedState('auth.currentUser'),
-  currentUser: <User>{},
+  currentUser: getSavedState('auth.currentUser'),
+  // currentUser: <User>{},
   token: null,
   loading: false,
   loggedIn: false,
@@ -21,6 +22,56 @@ export const state: AuthState = {
 };
 
 export const actions: ActionTree<AuthState, RootState> = {
+  init({ dispatch }) {
+    dispatch('InitProduct');
+    // if (!state.currentUser) return null;
+    // return dispatch("UpdateCustomerStatusServer").catch(err => {
+    //     console.log("There was error at init: ", err)
+    //     dispatch("logout")
+    // })
+  },
+  // init() {
+  //   console.log('[init action]');
+  //   // dispatch("InitProduct")
+  //   // if (!state.currentUser) return null;
+  //   // return dispatch("UpdateCustomerStatusServer").catch(err => {
+  //   //     console.log("There was error at init: ", err)
+  //   //     dispatch("logout")
+  //   // })
+  // },
+
+  validate({ commit, state, dispatch }): Promise<any> {
+    if (!state.currentUser) return Promise.resolve(null);
+    const user = state.currentUser;
+    const exp = localStorage.getItem('tokenExpiration');
+    if (exp && new Date().getTime() > +exp) {
+      // keep users logged in
+      const formData = new FormData();
+      formData.append('grant_type', 'refresh_token');
+      formData.append('refresh_token', user.token.refresh_token);
+      return fetch('/.netlify/identity/token', {
+        method: 'POST',
+        body: formData
+      })
+        .then((x) => x.json())
+        .then((newToken) => {
+          console.log('[token]', newToken);
+          user.token.access_token = newToken.access_token;
+          user.token.refresh_token = newToken.refresh_token;
+          // user.token.expires_at = jwt_decode(newToken.access_token).exp * 1000;
+          commit(SET_CURRENT_USER, user);
+          return Promise.resolve(user);
+        })
+        .catch((err) => {
+          console.log('Error: ', err);
+          dispatch('logout');
+          return Promise.resolve(<User>{});
+        });
+    }
+
+    return Promise.resolve(user);
+  },
+
   [SIGN_UP_USER]({ dispatch }, credentials) {
     return new Promise((resolve, reject) => {
       auth
@@ -123,3 +174,17 @@ export const getters: GetterTree<AuthState, RootState> = {
 };
 
 export const authNameSpace = namespace('auth/');
+
+function getSavedState(key: string) {
+  const value = localStorage.getItem(key);
+  const xxx = value ? JSON.parse(value) : null;
+  console.log('[valye]', xxx);
+  return xxx;
+}
+
+export default {
+  state,
+  actions,
+  mutations,
+  getters
+};
