@@ -6,7 +6,7 @@ import { RootState, AuthState } from './interfaces';
 import { SIGN_UP_USER, SIGN_IN_USER, SET_CURRENT_USER } from './actionTypes';
 export const auth = new GoTrue({
   // APIUrl: '/.netlify/identity',
-  APIUrl: `${process.env.NUXT_APP_PROXY}/.netlify/identity`,
+  APIUrl: `${process.env.BASE_URL}/.netlify/identity`,
   audience: '',
   setCookie: true
 });

@@ -1,4 +1,7 @@
+import webpack from 'webpack';
+
 export default {
+  ssr: false,
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'gt-nuxt',
@@ -19,7 +22,8 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    '~assets/scss/style.css'
+    '~assets/scss/style.css',
+    '~assets/scss/transition.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
@@ -56,9 +60,20 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    plugins: [
+      new webpack.ProvidePlugin({
+        // global modules
+        _: "lodash"
+      })
+    ],
+    extend(config, ctx) {}
   },
 
   router: {
     middleware: ['check-auth']
+  },
+
+  generate: {
+    fallback: true
   }
 }

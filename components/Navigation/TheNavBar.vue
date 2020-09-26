@@ -23,13 +23,14 @@
         <ul class="navbar-nav primary-nav">
           <li class="nav-item">
             <!-- <a class="nav-link dropdown-toggle" @click="toggleProductBar()">Products</a> -->
-            <router-link
+            <nuxt-link
               to="/products/flower"
               class="nav-link"
               aria-label="browse-products"
               @click="close()"
-              >Products</router-link
             >
+              Products
+            </nuxt-link>
           </li>
           <li class="nav-item">
             <!-- <a class="nav-link dropdown-toggle" @click="toggleProductBar()">Products</a> -->

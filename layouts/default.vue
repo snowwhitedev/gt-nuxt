@@ -51,6 +51,5 @@ export default class DefaultLayout extends Vue {
 <style lang="scss" scoped>
 .page-content {
   margin-top: 88px;
-  padding: 20px;
 }
 </style>
