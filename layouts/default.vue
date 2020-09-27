@@ -1,12 +1,18 @@
 <template>
   <div>
-    <the-nav-bar @onLogin="ShowLoginModal" />
+    <the-nav-bar @DropDownCart="DropCart" @onLogin="ShowLoginModal" />
     <transition name="modal">
       <sign-in-modal
         :class="{ show: logInModal && !loggedIn }"
         @onLoginX="ShowLoginModalX"
       />
     </transition>
+    <!-- <transition name="slide-fade">
+      <Sidecart
+        v-if="DropdownCart"
+        :class="{ slideInRight: DropdownCart, slideOutRight: !DropdownCart }"
+      ></Sidecart>
+    </transition> -->
     <div class="page-content">
       <Nuxt />
     </div>
@@ -28,6 +34,7 @@ import TheFooter from '@/components/Navigation/TheFooter.vue';
 })
 export default class DefaultLayout extends Vue {
   logInModal: boolean = false;
+  DropdownCart: boolean = false;
 
   @authNameSpace.Getter('LoggedIn')
   private loggedIn!: boolean;
@@ -36,6 +43,10 @@ export default class DefaultLayout extends Vue {
     this.$nuxt.$on(SHOW_LOGIN_MODAL, (val: any) => {
       this.ShowLoginModal(val);
     });
+  }
+
+  DropCart(value: any) {
+    this.DropdownCart = value;
   }
 
   ShowLoginModal(val: boolean) {

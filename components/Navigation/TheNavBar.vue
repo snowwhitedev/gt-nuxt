@@ -98,18 +98,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { authNameSpace } from '@/store/auth';
-// import NavCartItem from '@/modules/checkout/components/NavCartItem.vue';
-// import NavCart from '@/modules/checkout/components/NavCart.vue';
 import Search from './Search.vue';
-// import Signin from '@/components/Signin.vue';
 library.add(faBars, faShoppingCart, faArrowsAltH, faSearch);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 @Component({
   name: 'TheNavBar',
   components: {
-    // Signin,
-    // NavCartItem,
-    // NavCart,
     Search
   }
 })
@@ -132,7 +126,7 @@ export default class NavBar extends Vue {
   // //total : Number = 30;
   // dropDown: boolean = false;
   // productDropDown: boolean = false;
-  // DropdownCart: boolean = false;
+  DropdownCart: boolean = false;
   // DropdownAccount: boolean = false;
   // @Getter('ShoppingCart') Cart!: Array<Object>;
   // @Getter('CartID') CartID!: string;
@@ -144,13 +138,13 @@ export default class NavBar extends Vue {
   //   this.close();
   //   this.$router.push({ name: 'home' });
   // }
-  // toggleNav() {
-  //   this.DropdownAccount = false;
-  //   this.DropdownCart = false;
-  //   this.dropDown = !this.dropDown;
-  //   this.$emit('DropDownCart', this.DropdownCart);
-  //   this.setBodyOverflow();
-  // }
+  toggleNav() {
+    // this.DropdownAccount = false;
+    this.DropdownCart = false;
+    this.dropDown = !this.dropDown;
+    // this.$emit('DropDownCart', this.DropdownCart);
+    this.setBodyOverflow();
+  }
   // toggleProductBar() {
   //   this.DropdownAccount = false;
   //   this.DropdownCart = false;
@@ -186,15 +180,19 @@ export default class NavBar extends Vue {
   //   this.setBodyOverflow();
   //   this.$emit('DropDownCart', this.DropdownCart);
   // }
-  // setBodyOverflow() {
-  //   if (this.dropDown) {
-  //     document.getElementsByTagName('body')[0].classList.add('overflown');
-  //     document.getElementById('main-menu').style.zIndex = '9999';
-  //   } else {
-  //     document.getElementsByTagName('body')[0].classList.remove('overflown');
-  //     document.getElementById('main-menu').style.zIndex = '1031';
-  //   }
-  // }
+
+  setBodyOverflow() {
+    if (this.dropDown) {
+      document.getElementsByTagName('body')[0].classList.add('overflown');
+      const mainMenu = document.getElementById('main-menu');
+      if (mainMenu) mainMenu.style.zIndex = '9999';
+    } else {
+      document.getElementsByTagName('body')[0].classList.remove('overflown');
+      const mainMenu = document.getElementById('main-menu');
+      if (mainMenu) mainMenu.style.zIndex = '1031';
+    }
+  }
+
   signin() {
     // this.DropdownAccount = false;
     // this.DropdownCart = false;
