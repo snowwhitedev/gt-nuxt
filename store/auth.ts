@@ -177,9 +177,7 @@ export const authNameSpace = namespace('auth/');
 
 function getSavedState(key: string) {
   const value = localStorage.getItem(key);
-  const xxx = value ? JSON.parse(value) : null;
-  console.log('[valye]', xxx);
-  return xxx;
+  return value ? JSON.parse(value) : null;
 }
 
 export default {

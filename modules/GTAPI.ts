@@ -12,26 +12,20 @@ export interface IDeliveryAddressResponse {
 export default class GoodTreeAPI {
   static _makeRequest<T>(requestParams: RequestParams): Promise<T> {
     return this._getToken().then((user: any) => {
-      return fetch(
-        'https://condescending-bartik-8d77d9.netlify.app/.netlify/functions/' +
-          requestParams.endpoint,
-        {
-          method: requestParams.method,
-          headers: {
-            Authorization: 'Bearer ' + (user ? user.token.access_token : ''),
-            'Content-Type': 'application/json'
-          },
-          body: requestParams.body
-        }
-      )
+      return fetch('/api/.netlify/functions/' + requestParams.endpoint, {
+        method: requestParams.method,
+        headers: {
+          Authorization: 'Bearer ' + (user ? user.token.access_token : ''),
+          'Content-Type': 'application/json'
+        },
+        body: requestParams.body
+      })
         .then((response) => {
           if (!response.ok) {
             throw response;
           }
-          console.log('[response j]', response);
           const contentType = response.headers.get('content-type');
           if (contentType && contentType.includes('application/json')) {
-            console.log('[response j]', response.json());
             return response.json();
           } else {
             // console.log('[response t]', response.text());

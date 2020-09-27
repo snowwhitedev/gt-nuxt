@@ -1,3 +1,4 @@
+require('dotenv').config()
 import webpack from 'webpack';
 
 export default {
@@ -48,7 +49,8 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/proxy'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -62,6 +64,15 @@ export default {
         _: 'lodash'
       })
     ]
+  },
+
+  proxy: {
+    '/api': {
+      target: process.env.BASE_URL,
+      pathRewrite: {
+        '^/api' : '/'
+        }
+      }
   },
 
   router: {

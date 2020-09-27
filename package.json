@@ -24,6 +24,7 @@
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/proxy": "^2.0.1",
     "@types/js-cookie": "^2.2.6",
     "@types/jwt-decode": "^2.2.1",
     "@types/lodash": "^4.14.161",
