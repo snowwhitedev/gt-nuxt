@@ -40,11 +40,9 @@
         <div class="col-md-2">
           <ul v-if="!loggedIn" class="link-list">
             <li>
-              <router-link to="/sign-up">Sign up</router-link>
+              <router-link to="/signup">Sign up</router-link>
             </li>
-            <li>
-              <router-link to="/sign-in">Login</router-link>
-            </li>
+            <li class="link-item" @click="onLogIn">Login</li>
           </ul>
           <ul v-else class="link-list">
             <li>
@@ -121,6 +119,7 @@ import {
   faInstagram
 } from '@fortawesome/free-brands-svg-icons';
 import { authNameSpace } from '@/store/auth';
+import { SHOW_LOGIN_MODAL } from '../../store/actionTypes';
 library.add(faFacebook, faTwitter, faLinkedin, faInstagram);
 
 @Component({
@@ -138,24 +137,9 @@ export default class Footer extends Vue {
     this.$router.push('/');
   }
 
-  // page: Object = {
-  //   fields: {}
-  // };
-  // //  @Mutation('UpdateOrderStatus') update! : void;
-  // getPage() {
-  //   butter.page
-  //     .retrieve('*', 'footer')
-  //     .then((res: any) => {
-  //       this.page = res.data.data;
-  //     })
-  //     .catch((res: any) => {
-  //       console.log(res);
-  //     });
-  // }
-  // created() {
-  //   this.getPage();
-  //   Analytics.registerPageVisit(Page.HomePage);
-  // }
+  onLogIn() {
+    this.$nuxt.$emit(SHOW_LOGIN_MODAL, true);
+  }
 }
 </script>
 
