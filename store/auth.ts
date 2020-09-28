@@ -14,7 +14,7 @@ import {
 
 export const auth = new GoTrue({
   // APIUrl: '/.netlify/identity',
-  APIUrl: `${process.env.BASE_URL}/.netlify/identity`,
+  APIUrl: `${process.env.AUTH_BASE_URL}/.netlify/identity`,
   audience: '',
   setCookie: true
 });

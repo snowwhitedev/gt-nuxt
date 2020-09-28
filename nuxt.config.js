@@ -68,7 +68,7 @@ export default {
 
   proxy: {
     '/api': {
-      target: process.env.BASE_URL,
+      target: process.env.API_BASE_URL,
       pathRewrite: {
         '^/api': '/'
       }
