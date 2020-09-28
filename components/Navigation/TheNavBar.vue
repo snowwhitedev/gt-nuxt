@@ -33,6 +33,16 @@
             </nuxt-link>
           </li>
           <li class="nav-item">
+            <nuxt-link
+              to="/blog"
+              class="nav-link"
+              aria-label="browse-products"
+              @click="close()"
+            >
+              Blogs
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
             <!-- <a class="nav-link dropdown-toggle" @click="toggleProductBar()">Products</a> -->
             <a
               class="nav-link"
