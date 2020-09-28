@@ -49,7 +49,6 @@ export const getters: GetterTree<ProductState, RootState> = {
     });
   },
   [GET_PRODUCTS_BY_CATEGORY]: (state) => (type: string) => {
-    console.log('[products]', state.Products);
     return state.Products.filter((product) => {
       return product.Type.toLowerCase() === type.toLowerCase();
     });

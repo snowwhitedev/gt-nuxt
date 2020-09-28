@@ -58,8 +58,7 @@ export const actions: ActionTree<AuthState, RootState> = {
           commit(SET_CURRENT_USER, user);
           return Promise.resolve(user);
         })
-        .catch((err) => {
-          console.log('[Valid Error]', err);
+        .catch(() => {
           dispatch(LOG_OUT);
           return Promise.resolve(<User>{});
         });

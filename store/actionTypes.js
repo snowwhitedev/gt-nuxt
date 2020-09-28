@@ -17,3 +17,8 @@ export const GET_PRODUCTS_IS_LOADED = 'getProductsIsLoaded';
 export const SET_PRODUCTS_IS_LOADED = 'setProductsIsLoaded';
 export const FETCH_PRODUCTS = 'fetchProducts';
 export const SET_PRODUCTS_TO_STORE = 'setProductsToStore';
+
+// Blogs
+export const FETCH_BLOGS = 'fetchBlogs';
+export const SET_BLOGS = 'setBlogs';
+export const GET_BLOGS = 'getBlogs';

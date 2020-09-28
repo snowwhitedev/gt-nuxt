@@ -20,7 +20,7 @@
           Package size
           <transition name="slide-fade">
             <font-awesome-icon
-              v-if="this.filters.packageSizes.length"
+              v-if="filters.packageSizes.length"
               style="margin-left: 0.5em; position: absolute; top: 1px"
               class="text-info"
               :icon="['fa', 'undo-alt']"

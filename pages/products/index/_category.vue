@@ -125,7 +125,6 @@ export default class ProductCategory extends Vue {
     this.category = categoryService.getCategoryByName(
       this.$route.params.category as Categories
     );
-    console.log('[category name]', this.category.Name);
     const products = this.getCategoryProducts(this.category.Name);
 
     if (Array.isArray(products)) {

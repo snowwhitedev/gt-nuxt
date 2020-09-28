@@ -34,9 +34,7 @@ export default class Home extends Vue {
     this.transitionName = transitionName;
   }
 
-  created() {
-    console.log('[created products page]');
-  }
+  created() {}
 }
 </script>
 
