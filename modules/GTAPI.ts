@@ -1,8 +1,6 @@
 import { store } from '../store/index';
 import { ErrorResponse, RequestParams } from '../store/interfaces';
 // import { IDeliveryAddress } from '../profile/components/address/AddressService';
-// need function for doing requests that abstracts token handling, json parsing, error handling
-// then will need to replace all usages of fetch with my wrapper here
 
 export interface IDeliveryAddressResponse {
   //   addresses: IDeliveryAddress[];
@@ -28,7 +26,6 @@ export default class GoodTreeAPI {
           if (contentType && contentType.includes('application/json')) {
             return response.json();
           } else {
-            // console.log('[response t]', response.text());
             return response.text();
           }
         })

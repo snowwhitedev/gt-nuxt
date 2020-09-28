@@ -1,13 +1,11 @@
 <template>
   <div>
     <CategoryNavigation @transition-name-changed="setTransitionName" />
-    <!-- <transition :name="transitionName" mode="out-in"> -->
     <nuxt-child
       id="category-home-router-view"
       :key="$router.currentRoute.params.category"
       style="padding-top: 88px"
     />
-    <!-- </transition> -->
   </div>
 </template>
 
@@ -34,6 +32,10 @@ export default class Home extends Vue {
 
   private setTransitionName(transitionName: string) {
     this.transitionName = transitionName;
+  }
+
+  created() {
+    console.log('[created products page]');
   }
 }
 </script>

@@ -4,7 +4,14 @@ import GoTrue, { User } from 'gotrue-js';
 import Cookie from 'js-cookie';
 // import jwt_decode from 'jwt-decode';
 import { RootState, AuthState } from './interfaces';
-import { SIGN_UP_USER, SIGN_IN_USER, SET_CURRENT_USER } from './actionTypes';
+import {
+  SIGN_UP_USER,
+  SIGN_IN_USER,
+  SET_CURRENT_USER,
+  INIT_PRODUCTS,
+  LOG_OUT
+} from './actionTypes';
+
 export const auth = new GoTrue({
   // APIUrl: '/.netlify/identity',
   APIUrl: `${process.env.BASE_URL}/.netlify/identity`,
@@ -14,7 +21,6 @@ export const auth = new GoTrue({
 
 export const state: AuthState = {
   currentUser: getSavedState('auth.currentUser'),
-  // currentUser: <User>{},
   token: null,
   loading: false,
   loggedIn: false,
@@ -23,22 +29,13 @@ export const state: AuthState = {
 
 export const actions: ActionTree<AuthState, RootState> = {
   init({ dispatch }) {
-    dispatch('InitProduct');
+    dispatch(INIT_PRODUCTS);
     // if (!state.currentUser) return null;
     // return dispatch("UpdateCustomerStatusServer").catch(err => {
     //     console.log("There was error at init: ", err)
     //     dispatch("logout")
     // })
   },
-  // init() {
-  //   console.log('[init action]');
-  //   // dispatch("InitProduct")
-  //   // if (!state.currentUser) return null;
-  //   // return dispatch("UpdateCustomerStatusServer").catch(err => {
-  //   //     console.log("There was error at init: ", err)
-  //   //     dispatch("logout")
-  //   // })
-  // },
 
   validate({ commit, state, dispatch }): Promise<any> {
     if (!state.currentUser) return Promise.resolve(null);
@@ -55,7 +52,6 @@ export const actions: ActionTree<AuthState, RootState> = {
       })
         .then((x) => x.json())
         .then((newToken) => {
-          console.log('[token]', newToken);
           user.token.access_token = newToken.access_token;
           user.token.refresh_token = newToken.refresh_token;
           // user.token.expires_at = jwt_decode(newToken.access_token).exp * 1000;
@@ -63,8 +59,8 @@ export const actions: ActionTree<AuthState, RootState> = {
           return Promise.resolve(user);
         })
         .catch((err) => {
-          console.log('Error: ', err);
-          dispatch('logout');
+          console.log('[Valid Error]', err);
+          dispatch(LOG_OUT);
           return Promise.resolve(<User>{});
         });
     }
@@ -77,7 +73,6 @@ export const actions: ActionTree<AuthState, RootState> = {
       auth
         .signup(credentials.email, credentials.password, credentials.attributes)
         .then((response) => {
-          // console.log('response', response);
           resolve(response);
         })
         .catch((error) => {
@@ -102,7 +97,6 @@ export const actions: ActionTree<AuthState, RootState> = {
           );
           Cookie.set('jwt', response.token.access_token);
           Cookie.set('expirationDate', response.token.expires_at.toString());
-          // console.log('[login response]', response);
           resolve(response);
           // return dispatch('UpdateCustomerStatusServer', response.token.access_token)
         })
@@ -135,12 +129,12 @@ export const actions: ActionTree<AuthState, RootState> = {
       expirationDate = localStorage.getItem('tokenExpiration');
     }
     if (new Date().getTime() > +expirationDate || !token) {
-      dispatch('logout');
+      dispatch(LOG_OUT);
       return;
     }
     commit('setToken', token);
   },
-  logout({ commit }) {
+  [LOG_OUT]({ commit }) {
     commit('clearToken');
     Cookie.remove('jwt');
     Cookie.remove('expirationDate');

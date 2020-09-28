@@ -101,9 +101,9 @@
     </div>
 
     <div
+      v-if="item.Savings"
       class="text-center"
       style="background: #ed008c; color: white; margin-top: 1rem"
-      v-if="item.Savings"
     >
       <small style=""> Saved ${{ item.Savings }} for buy 3 get 1 free </small>
     </div>
@@ -114,7 +114,7 @@
   </div>
 </template>
 
-<script lang = "ts">
+<script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Action, Mutation } from 'vuex-class';
@@ -147,6 +147,7 @@ export default class NavCartItem extends Vue {
       Product: this.item.Product
     });
   }
+
   deincrement() {
     if (this.item.Quantity - 1 > 0) {
       this.SetItem({
@@ -158,6 +159,7 @@ export default class NavCartItem extends Vue {
       this.remove();
     }
   }
+
   remove() {
     this.RemoveItem(this.item);
   }

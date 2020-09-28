@@ -1,5 +1,5 @@
-require('dotenv').config()
 import webpack from 'webpack';
+require('dotenv').config();
 
 export default {
   ssr: false,
@@ -70,13 +70,13 @@ export default {
     '/api': {
       target: process.env.BASE_URL,
       pathRewrite: {
-        '^/api' : '/'
-        }
+        '^/api': '/'
       }
+    }
   },
 
   router: {
-    middleware: ['check-auth']
+    middleware: ['check-auth', 'initProducts']
   },
 
   generate: {

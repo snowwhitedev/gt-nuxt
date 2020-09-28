@@ -1,7 +1,7 @@
 <template>
   <nav-cart
-    :class="{ slideInRight: DropdownCart, slideOutRight: !DropdownCart }"
     v-on-clickaway="close"
+    :class="{ slideInRight: DropdownCart, slideOutRight: !DropdownCart }"
   >
     <transition-group
       style="position: relative; display: block"
@@ -17,7 +17,7 @@
   </nav-cart>
 </template>
 
-<script lang = "ts">
+<script lang="ts">
 // need to fix nav menu for cellphones
 // change when authenticated to display cart
 import Vue from 'vue';
@@ -31,10 +31,10 @@ import {
   faSearch
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import NavCartItem from './NavCartItem.vue';
 import { mixin as clickaway } from 'vue-clickaway';
-import { Analytics, Event } from '../../../services/AnalyticsService';
 import { OrderItem } from '@/types';
+import { Analytics, Event } from '../../../services/AnalyticsService';
+import NavCartItem from './NavCartItem.vue';
 library.add(faBars, faShoppingCart, faArrowsAltH, faSearch);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -51,9 +51,9 @@ export default class NavBar extends Vue {
   @Getter('CustomerStatus') Status;
   @Action('attemptLogout') Logout;
   @State((state) => state.Order.OrderStatus) status: string;
-  //tax : Number = 3;
-  //fee : Number = 3;
-  //total : Number = 30;
+  // tax : Number = 3;
+  // fee : Number = 3;
+  // total : Number = 30;
   dropDown: boolean = false;
   productDropDown: boolean = false;
   DropdownCart: boolean = false;
@@ -65,11 +65,13 @@ export default class NavBar extends Vue {
   get CartCount(): Number {
     return this.Cart.length;
   }
+
   logout() {
     this.Logout();
     this.close();
     this.$router.push({ name: 'home' });
   }
+
   toggleNav() {
     this.DropdownAccount = false;
     this.DropdownCart = false;
@@ -80,11 +82,13 @@ export default class NavBar extends Vue {
       document.getElementsByTagName('body')[0].classList.remove('overflown');
     }
   }
+
   toggleProductBar() {
     this.DropdownAccount = false;
     this.DropdownCart = false;
     this.productDropDown = !this.productDropDown;
   }
+
   toggleCartNav() {
     this.DropdownCart = !this.DropdownCart;
     this.productDropDown = false;
@@ -97,22 +101,26 @@ export default class NavBar extends Vue {
     }
     this.DropdownAccount = false;
   }
+
   toCart() {
     this.$router.push({ name: 'checkout' });
     this.DropdownAccount = false;
     this.DropdownCart = false;
     this.dropDown = false;
   }
+
   toggleAccountNav() {
     this.DropdownAccount = !this.DropdownAccount;
     this.DropdownCart = false;
   }
+
   close() {
     this.DropdownAccount = false;
     this.DropdownCart = false;
     this.productDropDown = false;
     this.dropDown = false;
   }
+
   signin() {
     this.DropdownAccount = false;
     this.DropdownCart = false;

@@ -6,6 +6,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import { authNameSpace } from '@/store/auth';
+export default class IndexPage extends Vue {
+  @authNameSpace.Action('init')
+  private init!: () => any;
 
-export default Vue.extend({});
+  created() {
+    this.init();
+  }
+}
 </script>

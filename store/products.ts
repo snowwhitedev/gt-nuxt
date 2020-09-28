@@ -1,16 +1,55 @@
-import { ActionTree, GetterTree, Module, MutationTree } from 'vuex';
+import { ActionTree, GetterTree, MutationTree } from 'vuex';
+import { namespace } from 'vuex-class';
 import GoodTreeAPI from '@/modules/GTAPI';
 import { ProductState, RootState } from './interfaces';
+import {
+  INIT_PRODUCTS,
+  FETCH_PRODUCTS,
+  SET_PRODUCTS_TO_STORE,
+  GET_PRODUCTS_BY_CATEGORY,
+  GET_PRODUCTS_BY_IDS,
+  SET_PRODUCTS_IS_LOADED,
+  GET_PRODUCTS_IS_LOADED
+} from './actionTypes';
 
-const state: ProductState = { Products: [] };
+export const state: ProductState = {
+  Products: [],
+  productsIsLoaded: false
+};
 
-const getters: GetterTree<ProductState, RootState> = {
-  getProductsByIds: (state) => (ids: string[]) => {
+export const actions: ActionTree<ProductState, RootState> = {
+  [INIT_PRODUCTS]({ dispatch }) {
+    // dispatch('LoadProducts', getters.Zone.Vendor);
+    dispatch(FETCH_PRODUCTS, 'Oakland');
+  },
+  [FETCH_PRODUCTS]({ commit }, location) {
+    GoodTreeAPI.GetProducts(location).then((products: any) => {
+      commit(SET_PRODUCTS_TO_STORE, products);
+      commit(SET_PRODUCTS_IS_LOADED, true);
+    });
+  }
+};
+
+export const mutations: MutationTree<ProductState> = {
+  [SET_PRODUCTS_TO_STORE](state, value) {
+    state.Products = value;
+  },
+  ClearStore(state) {
+    state.Products = [];
+  },
+  [SET_PRODUCTS_IS_LOADED](state, value) {
+    state.productsIsLoaded = value;
+  }
+};
+
+export const getters: GetterTree<ProductState, RootState> = {
+  [GET_PRODUCTS_BY_IDS]: (state) => (ids: string[]) => {
     return state.Products.filter((product) => {
       return ids.includes(product.SKU);
     });
   },
-  getProductsByCategory: (state) => (type: string) => {
+  [GET_PRODUCTS_BY_CATEGORY]: (state) => (type: string) => {
+    console.log('[products]', state.Products);
     return state.Products.filter((product) => {
       return product.Type.toLowerCase() === type.toLowerCase();
     });
@@ -30,34 +69,15 @@ const getters: GetterTree<ProductState, RootState> = {
         })
         .includes(true);
     });
-  }
-};
-
-const actions: ActionTree<ProductState, RootState> = {
-  InitProduct({ dispatch }) {
-    // dispatch('LoadProducts', getters.Zone.Vendor);
-    dispatch('LoadProducts', 'Oakland');
   },
-  LoadProducts({ commit }, location) {
-    GoodTreeAPI.GetProducts(location).then((products: any) => {
-      console.log('[products]', products);
-      commit('AddProductsToStore', products);
-    });
-  }
+  [GET_PRODUCTS_IS_LOADED]: (state) => state.productsIsLoaded
 };
 
-const mutations: MutationTree<ProductState> = {
-  AddProductsToStore(state, value) {
-    state.Products = value;
-  },
-  ClearStore(state) {
-    state.Products = [];
-  }
-};
+export const productsNameSpace = namespace('products/');
 
-export const Products: Module<ProductState, RootState> = {
+export default {
   state,
-  getters,
   actions,
-  mutations
+  mutations,
+  getters
 };

@@ -105,6 +105,7 @@ export interface AuthState {
 
 export interface ProductState {
   Products: Product[];
+  productsIsLoaded: boolean;
 }
 
 export interface RootState {
