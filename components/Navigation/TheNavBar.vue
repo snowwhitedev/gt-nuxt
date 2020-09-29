@@ -32,7 +32,7 @@
               Products
             </nuxt-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <nuxt-link
               to="/blog"
               class="nav-link"
@@ -51,7 +51,7 @@
             >
               Mockup
             </nuxt-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <!-- <a class="nav-link dropdown-toggle" @click="toggleProductBar()">Products</a> -->
             <a

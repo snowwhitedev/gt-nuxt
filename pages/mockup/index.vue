@@ -7,9 +7,7 @@
         </nuxt-link>
       </div>
       <div class="links">
-        <nuxt-link class="button--grey" to="/mockup/components">
-          Pages
-        </nuxt-link>
+        <nuxt-link class="button--grey" to="/mockup/pages">Pages</nuxt-link>
       </div>
     </div>
   </div>

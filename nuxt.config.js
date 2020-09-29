@@ -27,7 +27,7 @@ export default {
     '~assets/mockup/global/variables.scss',
     '~assets/mockup/global/mockstyle.scss'
   ],
-  
+
   styleResources: {
     scss: ['./assets/mockup/global/variables.scss']
   },
@@ -63,10 +63,7 @@ export default {
   ],
 
   bootstrapVue: {
-    componentPlugins: [
-      'TablePlugin',
-      'CardPlugin'
-    ],
+    componentPlugins: ['TablePlugin', 'CardPlugin'],
     components: [
       'BOverlay',
       'BFormInput',

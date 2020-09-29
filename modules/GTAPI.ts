@@ -9,15 +9,22 @@ export interface IDeliveryAddressResponse {
 
 export default class GoodTreeAPI {
   static _makeRequest<T>(requestParams: RequestParams): Promise<T> {
+    console.log('[I am on test]');
     return this._getToken().then((user: any) => {
-      return fetch('/api/.netlify/functions/' + requestParams.endpoint, {
-        method: requestParams.method,
-        headers: {
-          Authorization: 'Bearer ' + (user ? user.token.access_token : ''),
-          'Content-Type': 'application/json'
-        },
-        body: requestParams.body
-      })
+      return fetch(
+        `${process.env.API_BASE_URL}/.netlify/functions/` +
+          requestParams.endpoint,
+        {
+          method: requestParams.method,
+          headers: {
+            Authorization: 'Bearer ' + (user ? user.token.access_token : ''),
+            'Content-Type': 'application/json',
+            'access-control-allow-methods': '*',
+            'access-control-allow-origin': '*'
+          },
+          body: requestParams.body
+        }
+      )
         .then((response) => {
           if (!response.ok) {
             throw response;
