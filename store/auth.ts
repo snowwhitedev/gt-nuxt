@@ -29,6 +29,7 @@ export const state: AuthState = {
 
 export const actions: ActionTree<AuthState, RootState> = {
   init({ dispatch }) {
+    console.log('[xxxx init]');
     dispatch(INIT_PRODUCTS);
     // if (!state.currentUser) return null;
     // return dispatch("UpdateCustomerStatusServer").catch(err => {
