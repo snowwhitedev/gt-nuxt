@@ -4,20 +4,19 @@
       <b-form-input
         v-model="filters.searchValue"
         placeholder="Search..."
-        :debounce="350"
       ></b-form-input>
       <template v-slot:append>
-        <b-input-group-text
-          ><small class="text-info">{{
-            productsCount + ' product' + (productsCount != 1 ? 's' : '')
-          }}</small></b-input-group-text
-        >
+        <b-input-group-text>
+          <small class="text-info">
+            {{ productsCount + ' product' + (productsCount != 1 ? 's' : '') }}
+          </small>
+        </b-input-group-text>
       </template>
     </b-input-group>
     <div class="filters-container">
       <div v-if="packageSizes.length > 1" class="filter-container">
         <h5 style="position: relative">
-          Package size
+          Package size {{ productsCount }}
           <transition name="slide-fade">
             <font-awesome-icon
               v-if="filters.packageSizes.length"

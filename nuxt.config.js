@@ -21,7 +21,16 @@ export default {
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
-  css: ['~assets/scss/style.css', '~assets/scss/transition.css'],
+  css: [
+    '~assets/scss/style.css',
+    '~assets/scss/transition.css',
+    '~assets/mockup/global/variables.scss',
+    '~assets/mockup/global/mockstyle.scss'
+  ],
+  
+  styleResources: {
+    scss: ['./assets/mockup/global/variables.scss']
+  },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
@@ -52,6 +61,30 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/proxy'
   ],
+
+  bootstrapVue: {
+    componentPlugins: [
+      'TablePlugin',
+      'CardPlugin'
+    ],
+    components: [
+      'BOverlay',
+      'BFormInput',
+      'BFormCheckbox',
+      'BInputGroup',
+      'BInputGroupText',
+      'BFormDatepicker',
+      'BButton',
+      'BCollapse',
+      'BFormSelect',
+      'BInputGroupAppend',
+      'VBToggle',
+      'BTime',
+      'BIcon',
+      'BIconCheckCircle',
+      'BIconXCircle'
+    ]
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},

@@ -30,7 +30,6 @@ export default class GoodTreeAPI {
           }
         })
         .catch((err: ErrorResponse) => {
-          console.log('Error making request: ', err);
           return Promise.reject(err);
         });
     });

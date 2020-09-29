@@ -1,0 +1,16 @@
+.progress-badge {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #ddd;
+  margin-right: 5px;
+  &.todo {
+    background-color: #bbb;
+  }
+  &.doing {
+    background-color: #f90;
+  }
+  &.done {
+    background-color: #83e323;
+  }
+}

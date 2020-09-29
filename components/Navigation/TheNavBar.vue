@@ -43,6 +43,16 @@
             </nuxt-link>
           </li>
           <li class="nav-item">
+            <nuxt-link
+              to="/mockup"
+              class="nav-link"
+              aria-label="browse-products"
+              @click="close()"
+            >
+              Mockup
+            </nuxt-link>
+          </li>
+          <li class="nav-item">
             <!-- <a class="nav-link dropdown-toggle" @click="toggleProductBar()">Products</a> -->
             <a
               class="nav-link"
