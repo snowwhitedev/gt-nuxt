@@ -14,11 +14,22 @@
         <h4 class="text-center font-weight-bold">Flower</h4>
       </div>
     </div>
-    <ul>
+    <ul class="products-list">
       <li v-for="product in products" :key="product.id">
         <ProductListCard
           :added="product.added"
-          :propCount="product.propCount"
+          :prop-count="product.propCount"
+          :image="product.image"
+        />
+      </li>
+    </ul>
+    <product-offer />
+    <ul class="products-list">
+      <li v-for="product in relatedProducts" :key="product.id">
+        <ProductListCard
+          :added="product.added"
+          :prop-count="product.propCount"
+          :image="product.image"
         />
       </li>
     </ul>
@@ -29,8 +40,9 @@
 import { Component, Vue } from 'vue-property-decorator';
 import PromotionBar from '@/components/Mockup/Misc/PromotionBar.vue';
 import BannerTop from '@/components/Mockup/Misc/BannerTop.vue';
-import ProductListCard from '@/components/Mockup/Cards/ProductListCard.vue';
+import ProductListCard from '@/components/Mockup/Products/ProductListCard.vue';
 import Search from '@/components/Mockup/Misc/Search.vue';
+import ProductOffer from '@/components/Mockup/Products/ProductOffer.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 library.add(faArrowDown);
@@ -40,14 +52,56 @@ library.add(faArrowDown);
     PromotionBar,
     BannerTop,
     ProductListCard,
-    Search
+    Search,
+    ProductOffer
   },
   data() {
     return {
       products: [
-        { id: 1, added: false, propCount: 0 },
-        { id: 2, added: true, propCount: 0 },
-        { id: 3, added: false, propCount: 1 }
+        {
+          id: 1,
+          added: false,
+          propCount: 0,
+          image:
+            'https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg'
+        },
+        {
+          id: 2,
+          added: true,
+          propCount: 0,
+          image:
+            'https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg'
+        },
+        {
+          id: 3,
+          added: false,
+          propCount: 1,
+          image:
+            'https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg'
+        }
+      ],
+      relatedProducts: [
+        {
+          id: 1,
+          added: false,
+          propCount: 0,
+          image:
+            'https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg'
+        },
+        {
+          id: 2,
+          added: false,
+          propCount: 0,
+          image:
+            'https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg'
+        },
+        {
+          id: 3,
+          added: false,
+          propCount: 0,
+          image:
+            'https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg'
+        }
       ]
     };
   }
@@ -86,7 +140,10 @@ p {
     color: $color-main;
   }
 }
-li {
+ul.products-list li {
   border-bottom: 1px solid #cccccc;
+}
+ul.products-list li:last-child {
+  border-bottom: none;
 }
 </style>

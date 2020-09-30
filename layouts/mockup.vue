@@ -19,7 +19,7 @@ import Component from 'vue-class-component';
 import { authNameSpace } from '@/store/auth';
 import { SHOW_LOGIN_MODAL } from '@/store/actionTypes';
 import TheNavBar from '@/components/Navigation/TheNavBar.vue';
-import TheFooter from '@/components/Navigation/TheFooter.vue';
+import TheFooter from '@/components/Mockup/Navigation/TheFooter.vue';
 @Component({
   components: {
     TheNavBar,

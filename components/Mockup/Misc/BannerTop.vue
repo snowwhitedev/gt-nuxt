@@ -4,7 +4,7 @@
       src="https://upload.wikimedia.org/wikipedia/commons/4/46/Litchi_chinensis_fruits.JPG"
       alt="Banner"
     />
-    <h1 class="banner-text">Get 1 Free 8th When you Buy 3 Or More</h1>
+    <h1 class="banner-text">Get 1 Free 8th When You Buy 3 Or More</h1>
   </div>
 </template>
 

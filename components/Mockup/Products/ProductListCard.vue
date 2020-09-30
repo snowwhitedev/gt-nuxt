@@ -1,19 +1,24 @@
 <template>
   <div class="product-list-card">
-    <div class="d-flex align-items-center">
-      <div class="mr-2">
-        <p class="product-name">GT Royal OG</p>
-        <p class="product-brief">Indica THC 21.6%</p>
+    <b-overlay :show="added">
+      <div class="d-flex align-items-center">
+        <div class="mr-4">
+          <p class="product-name">GT Royal OG</p>
+          <p class="product-brief">Indica THC 21.6%</p>
+          <p class="amount mt-4">$xx.xx / xx G</p>
+        </div>
+        <img :src="image" alt="Product image" class="product-image" />
       </div>
-      <div v-if="added" class="check-mark">
-        <font-awesome-icon :icon="['fas', 'check']" class="icon-check" />
-      </div>
-    </div>
-    <div class="mt-4 d-flex align-items-center">
-      <p class="amount mr-3">$xx.xx / xx G</p>
-      <p v-if="added" class="added-text">Added to Cart</p>
-    </div>
-    <button-count v-model="count" class="card-count" />
+      <button-count v-model="count" class="card-count" />
+      <template v-slot:overlay>
+        <div class="d-flex flex-column align-items-center">
+          <div class="check-mark">
+            <font-awesome-icon :icon="['fas', 'check']" class="icon-check" />
+          </div>
+          <p class="added-text mt-3">Added to Cart</p>
+        </div>
+      </template>
+    </b-overlay>
   </div>
 </template>
 
@@ -28,6 +33,10 @@ library.add(faCheck);
     added: {
       type: Boolean,
       default: false
+    },
+    image: {
+      type: String,
+      default: ''
     }
   },
   components: {
@@ -60,6 +69,10 @@ p {
 }
 .product-brief {
   color: #aaaaaa;
+}
+.product-image {
+  width: 80px;
+  height: 120px;
 }
 .card-count {
   position: absolute;

@@ -9,7 +9,6 @@ export interface IDeliveryAddressResponse {
 
 export default class GoodTreeAPI {
   static _makeRequest<T>(requestParams: RequestParams): Promise<T> {
-    console.log('[I am on test]');
     return this._getToken().then((user: any) => {
       return fetch(
         `${process.env.API_BASE_URL}/.netlify/functions/` +

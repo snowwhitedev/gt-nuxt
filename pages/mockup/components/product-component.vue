@@ -7,7 +7,9 @@
           <div class="mr-3" :class="`progress-badge doing`"></div>
           <p class="font-weight-bold">Product List Card</p>
         </div>
-        <ProductListCard />
+        <ProductListCard
+          image="https://banner2.cleanpng.com/20180323/pve/kisspng-fruit-tree-fruit-tree-clip-art-tree-5ab48b2116fcb7.7236415115217815370942.jpg"
+        />
       </div>
     </div>
   </div>
@@ -15,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import ProductListCard from '@/components/Mockup/Cards/ProductListCard.vue';
+import ProductListCard from '@/components/Mockup/Products/ProductListCard.vue';
 @Component({
   components: {
     ProductListCard

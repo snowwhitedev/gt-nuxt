@@ -36,7 +36,7 @@ import { Component, Vue } from 'vue-property-decorator';
     return {
       components: [
         { name: 'Buttons', link: 'buttons', status: 'doing' },
-        { name: 'Cards', link: 'cards', status: 'doing' },
+        { name: 'Products', link: 'product-component', status: 'doing' },
         { name: 'Misc', link: 'misc', status: 'doing' }
       ]
     };
