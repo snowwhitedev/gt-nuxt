@@ -39,6 +39,11 @@ import { Component, Vue } from 'vue-property-decorator';
           name: 'Product Page - Mobile',
           link: 'product_page_mobile',
           status: 'doing'
+        },
+        {
+          name: 'Product Single Page - Mobile',
+          link: 'product_single_page_mobile',
+          status: 'doing'
         }
       ]
     };

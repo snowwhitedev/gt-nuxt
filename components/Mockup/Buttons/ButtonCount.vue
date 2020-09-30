@@ -5,6 +5,7 @@
       ref="cntInput"
       :type="value > 0 ? 'text' : 'hidden'"
       :value="value"
+      readonly
     />
     <span v-if="value > 0" class="counter" @click="decrement">-</span>
   </div>
@@ -72,8 +73,11 @@ export default class MockButtonCount extends Vue {
   &.horizontal {
     height: 32px;
     flex-direction: row;
+    justify-content: space-between;
     input {
       height: 28px;
+      width: 100%;
+      max-width: 100px;
     }
   }
 }

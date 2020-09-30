@@ -371,7 +371,7 @@ export default class ProductCard extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 #btn-add-to-cart {
   display: inline-block;
   width: 100%;

@@ -14,14 +14,7 @@
           <div class="mr-3" :class="`progress-badge doing`"></div>
           <p class="font-weight-bold">Banner Top</p>
         </div>
-        <banner-top />
-      </div>
-      <div class="mt-3">
-        <div class="d-flex align-items-center mb-2">
-          <div class="mr-3" :class="`progress-badge doing`"></div>
-          <p class="font-weight-bold">Product offer</p>
-        </div>
-        <product-offer />
+        <banner-top title="Your Title Here" />
       </div>
     </div>
   </div>
@@ -31,17 +24,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import PromotionBar from '@/components/Mockup/Misc/PromotionBar.vue';
 import BannerTop from '@/components/Mockup/Misc/BannerTop.vue';
-import ProductOffer from '@/components/Mockup/Products/ProductOffer.vue';
+
 @Component({
   components: {
     PromotionBar,
-    BannerTop,
-    ProductOffer
+    BannerTop
   }
 })
-export default class MockButtons extends Vue {
-  private cnt1: number = 0;
-}
+export default class MockButtons extends Vue {}
 </script>
 
 <style lang="scss" scoped>

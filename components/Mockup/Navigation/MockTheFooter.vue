@@ -150,6 +150,11 @@ export default class Footer extends Vue {
 </script>
 
 <style lang="scss" scoped>
+footer {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
 p {
   margin: 0;
 }

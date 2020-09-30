@@ -1,7 +1,7 @@
 <template>
   <div>
     <PromotionBar />
-    <banner-top />
+    <banner-top :title="bannerTitle" />
     <div class="page-options mt-4">
       <div class="page-option"><search /></div>
       <div class="page-option">
@@ -41,11 +41,8 @@ import { Component, Vue } from 'vue-property-decorator';
 import PromotionBar from '@/components/Mockup/Misc/PromotionBar.vue';
 import BannerTop from '@/components/Mockup/Misc/BannerTop.vue';
 import ProductListCard from '@/components/Mockup/Products/ProductListCard.vue';
-import Search from '@/components/Mockup/Misc/Search.vue';
+import Search from '@/components/Mockup/Misc/MockSearch.vue';
 import ProductOffer from '@/components/Mockup/Products/ProductOffer.vue';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-library.add(faArrowDown);
 @Component({
   layout: 'mockup',
   components: {
@@ -106,7 +103,9 @@ library.add(faArrowDown);
     };
   }
 })
-export default class MockProductPageMobile extends Vue {}
+export default class MockProductPageMobile extends Vue {
+  private bannerTitle: string = 'Get 1 Free 8th When You Buy 3 or More';
+}
 </script>
 
 <style lang="scss" scoped>
