@@ -1,6 +1,14 @@
 import webpack from 'webpack';
 require('dotenv').config();
-
+const categories = [
+  'flower',
+  'vapes',
+  'vapes',
+  'prerolls',
+  'extracts',
+  'edibles',
+  'accessories'
+];
 export default {
   ssr: false,
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -110,6 +118,9 @@ export default {
   },
 
   generate: {
-    fallback: true
+    fallback: true,
+    routes: categories.map((cat) => {
+      return `/products/${cat}`;
+    })
   }
 };

@@ -14,8 +14,16 @@
     />
     <ProductDetailCard />
     <banner-top :title="bannerTitle" :description="bannerText" />
-    <div class="page-options mt-4 mb-4">
-      This is carousel part. It is comming soon.
+    <div class="mt-4 mb-4">
+      <Carousel>
+        <div v-for="recom in recommends" :key="recom._id" class="slide">
+          <ProductIntroCard
+            :image="recom.image"
+            :name="recom.name"
+            :cost="recom.cost"
+          />
+        </div>
+      </Carousel>
     </div>
     <About />
   </div>
@@ -27,6 +35,8 @@ import PromotionBar from '@/components/Mockup/Misc/PromotionBar.vue';
 import ProductOrderCard from '@/components/Mockup/Products/ProductOrderCard.vue';
 import ProductDetailCard from '@/components/Mockup/Products/ProductsDetailCard.vue';
 import BannerTop from '@/components/Mockup/Misc/BannerTop.vue';
+import Carousel from '@/components/Mockup/Products/Carousel.vue';
+import ProductIntroCard from '@/components/Mockup/Products/ProductIntroCard.vue';
 import About from '@/components/Mockup/Products/About.vue';
 @Component({
   layout: 'mockup',
@@ -35,6 +45,8 @@ import About from '@/components/Mockup/Products/About.vue';
     ProductOrderCard,
     ProductDetailCard,
     BannerTop,
+    Carousel,
+    ProductIntroCard,
     About
   },
   data() {
@@ -55,6 +67,30 @@ export default class MockProductPageMobile extends Vue {
     cbd: '3%',
     effects: 'Happy, Peaceful, and Relaxed'
   };
+
+  private recommends: object = [
+    {
+      _id: 1,
+      image:
+        'https://leafly-production.imgix.net/https%3A%2F%2Fleafly-public.s3-us-west-2.amazonaws.com%2Fproducts%2Fphotos%2FYz5iPPazSGjXmz25JBbD_Grapefruit+Durban.jpg?ixlib=rails-4.0.0&w=240&h=&fit=crop&bg=FFFFFF&fm=jpg&q=80&s=7bcde35f13e34cb916fc8408f4f6a952',
+      name: 'Mango Shebert1',
+      cost: '$xx.xx / xx G'
+    },
+    {
+      _id: 2,
+      image:
+        'https://leafly-production.imgix.net/https%3A%2F%2Fleafly-public.s3-us-west-2.amazonaws.com%2Fproducts%2Fphotos%2FYz5iPPazSGjXmz25JBbD_Grapefruit+Durban.jpg?ixlib=rails-4.0.0&w=240&h=&fit=crop&bg=FFFFFF&fm=jpg&q=80&s=7bcde35f13e34cb916fc8408f4f6a952',
+      name: 'Mango Shebert2',
+      cost: '$xx.xx / xx G'
+    },
+    {
+      _id: 3,
+      image:
+        'https://leafly-production.imgix.net/https%3A%2F%2Fleafly-public.s3-us-west-2.amazonaws.com%2Fproducts%2Fphotos%2FYz5iPPazSGjXmz25JBbD_Grapefruit+Durban.jpg?ixlib=rails-4.0.0&w=240&h=&fit=crop&bg=FFFFFF&fm=jpg&q=80&s=7bcde35f13e34cb916fc8408f4f6a952',
+      name: 'Mango Shebert3',
+      cost: '$xx.xx / xx G'
+    }
+  ];
 
   private bannerTitle: string = 'Grown With The Highest Standards';
   private bannerText: string = 'Your text here. Your text here. Your text here';
