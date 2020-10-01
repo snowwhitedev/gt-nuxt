@@ -18,7 +18,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { authNameSpace } from '@/store/auth';
 import { SHOW_LOGIN_MODAL } from '@/store/actionTypes';
-import TheNavBar from '@/components/Navigation/TheNavBar.vue';
+import TheNavBar from '@/components/Mockup/Navigation/MockTheNavBar.vue';
 import TheFooter from '@/components/Mockup/Navigation/MockTheFooter.vue';
 @Component({
   components: {
