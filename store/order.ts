@@ -3,10 +3,10 @@ import { namespace } from 'vuex-class';
 // import router from '../router';
 // import Vue from 'vue';
 // import NProgress from "nprogress";
-import CheckoutValidator from '@/modules/checkout/CheckOutValidator';
 import GoodTreeAPI from '@/modules/GTAPI';
+import CheckoutValidator from './services/checkout/CheckOutValidator';
 // import { Analytics, Event } from '@/services/AnalyticsService';
-import AddressService from '@/modules/address/AddressService';
+import AddressService from './services/address/AddressService';
 import {
   RootState,
   OrderState,

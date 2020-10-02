@@ -1,5 +1,5 @@
 import { User } from 'gotrue-js';
-import { IDeliveryAddress } from '~/modules/address/AddressService';
+import { IDeliveryAddress } from './services/address/AddressService';
 
 export interface Product {
   SKU: string;

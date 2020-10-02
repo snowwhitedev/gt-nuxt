@@ -26,7 +26,7 @@ export default class CheckoutValidator {
     }
 
     if (!store.getters.AboveMinimum) {
-      console.log('min', store.state.Order.LocationState.Zone.Minimum);
+      // console.log('min', store.state.Order.LocationState.Zone.Minimum);
       validationResult.errors.push({
         errorCode: ErrorCodes.BelowMinimum,
         errorMessage:

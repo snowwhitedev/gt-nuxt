@@ -1,6 +1,6 @@
 import { store } from '../store/index';
 import { ErrorResponse, RequestParams } from '../store/interfaces';
-import { IDeliveryAddress } from './address/AddressService';
+import { IDeliveryAddress } from '../store/services/address/AddressService';
 
 export interface IDeliveryAddressResponse {
   //   addresses: IDeliveryAddress[];
