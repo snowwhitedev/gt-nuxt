@@ -1,5 +1,5 @@
 import { User } from 'gotrue-js';
-// import { IDeliveryAddress } from './modules/profile/components/address/AddressService';
+import { IDeliveryAddress } from '@/modules/address/AddressService';
 
 export interface Product {
   SKU: string;
@@ -38,8 +38,8 @@ export interface Zone {
 }
 
 export interface LocationInfo {
-  // Address: IDeliveryAddress;
-  Address: string;
+  Address: IDeliveryAddress;
+  // Address: string;
   IsInDeliveryNetwork: boolean;
   Zone: Zone;
 }
