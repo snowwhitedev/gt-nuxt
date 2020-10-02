@@ -1,6 +1,6 @@
 import { store } from '../store/index';
 import { ErrorResponse, RequestParams } from '../store/interfaces';
-// import { IDeliveryAddress } from '../profile/components/address/AddressService';
+import { IDeliveryAddress } from './address/AddressService';
 
 export interface IDeliveryAddressResponse {
   //   addresses: IDeliveryAddress[];
@@ -104,7 +104,7 @@ export default class GoodTreeAPI {
   //       body: JSON.stringify(deliveryAddress)
   //     });
   //   }
-  static AddAddress(deliveryAddress: string): Promise<undefined> {
+  static AddAddress(deliveryAddress: IDeliveryAddress): Promise<any> {
     return this._makeRequest({
       endpoint: 'createCustomerAddress',
       method: 'POST',

@@ -66,7 +66,7 @@ export default class AddressService {
     });
   }
 
-  private static mapAddressToSelectableInDataSource(address) {
+  private static mapAddressToSelectableInDataSource(address: any) {
     return { value: address, text: AddressService.getFullAddress(address) };
   }
 }
